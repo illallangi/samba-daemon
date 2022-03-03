@@ -1,17 +1,17 @@
 ---
 jobs:
-  yamllint:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: karancode/yamllint-github-action@master
-  hadolint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: hadolint/hadolint-action@master
         with:
-          dockerfile: "Dockerfile"
+          fetch-depth: 0
+      - uses: github/super-linter@slim-v4
+        env:
+          ERROR_ON_MISSING_EXEC_BIT: true
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test:
     runs-on: ubuntu-latest
     steps:
@@ -31,4 +31,10 @@ jobs:
         platforms: linux/amd64
         push: false
 name: Test
-on: pull_request
+on:
+  push:
+    branches-ignore:
+    - main
+  pull_request:
+    branches:
+    - main

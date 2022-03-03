@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+export UMASK_SET=${UMASK_SET:-022}
+export PUID=${PUID:-1000}
+export PGID=${PGID:-1000}
+export USERNAME=${USERNAME:-admin}
+export PASSWORD=${PASSWORD:-Letmein123}
+
+umask "$UMASK_SET" || exit 1
+
+addgroup --gid ${PGID} ${USERNAME} || exit 1
+useradd --gid ${PGID} --uid ${PUID} ${USERNAME} --create-home || exit 1
+echo -e "${PASSWORD}\n${PASSWORD}" | smbpasswd -c /config/smb.conf -a ${USERNAME} -s
+
+mkdir -p /data || exit 1
+
+find /data ! -group ${PGID} -exec chown -c ${PUID}.${PGID} {} \; || exit 1
+find /data ! -user ${PUID} -exec chown -c ${PUID} {} \; || exit 1
+
+find /data -type d ! -perm 0755 -exec chmod -c 0755 {} \; || exit 1
+find /data -type f ! -perm 0644 -exec chmod -c 0644 {} \; || exit 1
+
+exec $@

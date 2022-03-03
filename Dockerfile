@@ -3,10 +3,13 @@ FROM docker.io/library/debian:buster-20220125
 RUN \
   apt-get update \
   && \
-  apt-get install -y samba \
+  apt-get install -y \
+    samba \
+    tini \
   && \
-  apt-get clean
+  apt-get clean \
+  && \
+  /usr/share/samba/update-apparmor-samba-profile
 
-RUN /usr/share/samba/update-apparmor-samba-profile
-
+ENTRYPOINT ["tini", "--"]
 CMD ["/usr/sbin/smbd", "--foreground", "--no-process-group", "--log-stdout"]

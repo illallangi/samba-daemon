@@ -8,8 +8,9 @@ jobs:
           fetch-depth: 0
       - uses: github/super-linter/slim@v4
         env:
-          ERROR_ON_MISSING_EXEC_BIT: true
-          VALIDATE_ALL_CODEBASE: false
+          ERROR_ON_MISSING_EXEC_BIT: 'true'
+          VALIDATE_ALL_CODEBASE: 'false'
+          YAML_ERROR_ON_WARNING: 'false'
           DEFAULT_BRANCH: master
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test:

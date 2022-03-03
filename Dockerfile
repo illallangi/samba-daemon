@@ -11,5 +11,7 @@ RUN \
   && \
   /usr/share/samba/update-apparmor-samba-profile
 
-ENTRYPOINT ["tini", "--"]
+COPY root /
+
+ENTRYPOINT ["tini", "-g", "--"]
 CMD ["/usr/sbin/smbd", "--foreground", "--no-process-group", "--log-stdout"]

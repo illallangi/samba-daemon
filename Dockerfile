@@ -4,8 +4,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
   apt-get update \
   && \
   apt-get install -y --no-install-recommends \
-    samba \
-    tini \
+    samba=2:4.9.5+dfsg-5+deb10u3 \
+    tini=0.18.0-1 \
   && \
   apt-get clean \
   && \

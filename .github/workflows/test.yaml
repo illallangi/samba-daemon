@@ -1,5 +1,18 @@
 ---
 jobs:
+  hadolint: #https://github.com/marketplace/actions/yamllint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2 
+    - uses: hadolint/hadolint-action@v1.6.0
+      with:
+        failure-threshold: style
+  yamllint: #https://github.com/marketplace/actions/yamllint-github-action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: karancode/yamllint-github-action@v2.0.0
+
   lint:
     runs-on: ubuntu-latest
     steps:

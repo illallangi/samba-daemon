@@ -1,31 +1,43 @@
 ---
 jobs:
-  hadolint: #https://github.com/marketplace/actions/yamllint
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2 
-    - uses: hadolint/hadolint-action@v1.6.0
-      with:
-        failure-threshold: style
-  yamllint: #https://github.com/marketplace/actions/yamllint-github-action
+  
+  actionlint: # https://github.com/reviewdog/action-actionlint
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: karancode/yamllint-github-action@v2.0.0
+    - uses: reviewdog/action-actionlint@v1
+      with:
+        level: error
+        reporter: github-pr-check
+        filter_mode: nofilter
+        fail_on_error: true
+    - uses: reviewdog/action-suggester@v1
 
-  lint:
+  yamllint: # https://github.com/reviewdog/action-yamllint
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: reviewdog/action-yamllint@v1
+      with:
+        level: error
+        reporter: github-pr-check
+        filter_mode: nofilter
+        fail_on_error: true
+    - uses: reviewdog/action-suggester@v1
+
+  misspell: # https://github.com/reviewdog/action-misspell
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: reviewdog/action-misspell@v1
         with:
-          fetch-depth: 0
-      - uses: github/super-linter/slim@v4
-        env:
-          ERROR_ON_MISSING_EXEC_BIT: 'true'
-          VALIDATE_ALL_CODEBASE: 'true'
-          YAML_ERROR_ON_WARNING: 'true'
-          DEFAULT_BRANCH: master
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          locale: UK
+          level: error
+          reporter: github-pr-check
+          filter_mode: nofilter
+          fail_on_error: true
+      - uses: reviewdog/action-suggester@v1
+
   test:
     runs-on: ubuntu-latest
     steps:

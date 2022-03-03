@@ -3,7 +3,7 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
       with:
         fetch-depth: "0"
     - env:
@@ -12,7 +12,7 @@ jobs:
         WITH_V: true
       id: version
       name: Bump version and push tag
-      uses: anothrNick/github-tag-action@1.26.0
+      uses: anothrNick/github-tag-action@1.38.0
     - id: meta
       name: Docker meta
       uses: docker/metadata-action@v3

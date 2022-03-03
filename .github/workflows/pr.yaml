@@ -1,5 +1,12 @@
 ---
 jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hadolint/hadolint-action@master
+        with:
+          dockerfile: "Dockerfile"
   test:
     runs-on: ubuntu-latest
     steps:

@@ -14,4 +14,4 @@ RUN \
 COPY root /
 
 ENTRYPOINT ["tini", "-g", "--"]
-CMD ["/usr/sbin/smbd", "--foreground", "--no-process-group", "--log-stdout"]
+CMD ["/usr/sbin/smbd", "--foreground", "--no-process-group", "--log-stdout", "--configfile=/etc/samba/smb.conf"]

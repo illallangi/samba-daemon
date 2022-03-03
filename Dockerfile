@@ -9,7 +9,9 @@ RUN \
   && \
   apt-get clean \
   && \
-  /usr/share/samba/update-apparmor-samba-profile
+  /usr/share/samba/update-apparmor-samba-profile \
+  && \
+  mkdir /data
 
 COPY root /
 

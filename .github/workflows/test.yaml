@@ -6,6 +6,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - uses: reviewdog/action-actionlint@v1        
+      with:
+        filter_mode: nofilter
     - uses: reviewdog/action-suggester@v1
 
   yamllint: # https://github.com/reviewdog/action-yamllint
@@ -14,8 +16,6 @@ jobs:
     - uses: actions/checkout@v2
     - uses: reviewdog/action-yamllint@v1
       with:
-        level: error
-        reporter: github-pr-review
         filter_mode: nofilter
         
     - uses: reviewdog/action-suggester@v1
@@ -26,8 +26,6 @@ jobs:
     - uses: actions/checkout@v2
     - uses: reviewdog/action-hadolint@v1
       with:
-        level: error
-        reporter: github-pr-review
         filter_mode: nofilter
         
     - uses: reviewdog/action-suggester@v1
@@ -39,8 +37,6 @@ jobs:
       - uses: reviewdog/action-misspell@v1
         with:
           locale: UK
-          level: error
-          reporter: github-pr-review
           filter_mode: nofilter
           
       - uses: reviewdog/action-suggester@v1

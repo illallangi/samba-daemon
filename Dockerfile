@@ -1,4 +1,4 @@
-FROM docker.io/library/debian:buster-20220125
+FROM docker.io/library/debian:buster-20220228
 
 RUN \
   apt-get update \

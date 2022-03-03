@@ -5,13 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: reviewdog/action-actionlint@v1
-      with:
-        github_token: ${{ secrets.github_token }}
-        level: error
-        reporter: github-pr-review
-        filter_mode: nofilter
-        fail_on_error: true
+    - uses: reviewdog/action-actionlint@v1        
     - uses: reviewdog/action-suggester@v1
 
   yamllint: # https://github.com/reviewdog/action-yamllint
@@ -23,7 +17,7 @@ jobs:
         level: error
         reporter: github-pr-review
         filter_mode: nofilter
-        fail_on_error: true
+        
     - uses: reviewdog/action-suggester@v1
 
   hadolint: # https://github.com/reviewdog/action-hadolint
@@ -35,7 +29,7 @@ jobs:
         level: error
         reporter: github-pr-review
         filter_mode: nofilter
-        fail_on_error: true
+        
     - uses: reviewdog/action-suggester@v1
 
   misspell: # https://github.com/reviewdog/action-misspell
@@ -48,7 +42,7 @@ jobs:
           level: error
           reporter: github-pr-review
           filter_mode: nofilter
-          fail_on_error: true
+          
       - uses: reviewdog/action-suggester@v1
 
   test:

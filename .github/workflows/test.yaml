@@ -22,7 +22,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: reviewdog/action-misspell@v1
         with:
-          locale: UK
           filter_mode: nofilter
       - uses: reviewdog/action-suggester@v1
   lint-yaml: # https://github.com/reviewdog/action-yamllint

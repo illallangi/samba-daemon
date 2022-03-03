@@ -7,6 +7,10 @@ RUN DEBIAN_FRONTEND=noninteractive \
     samba=2:4.9.5+dfsg-5+deb10u3 \
     tini=0.18.0-1 \
   && \
+  apt-get clean \
+  && \
+  rm -rf /var/lib/apt/lists/* \
+  && \
   /usr/share/samba/update-apparmor-samba-profile \
   && \
   mkdir /data

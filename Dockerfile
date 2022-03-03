@@ -1,13 +1,15 @@
 FROM docker.io/library/debian:buster-20220228
 
-RUN \
+RUN DEBIAN_FRONTEND=noninteractive \
   apt-get update \
   && \
-  apt-get install -y \
+  apt-get install -y --no-install-recommends \
     samba \
     tini \
   && \
   apt-get clean \
+  && \
+  rm -rf /var/lib/apt/lists/* \
   && \
   /usr/share/samba/update-apparmor-samba-profile \
   && \

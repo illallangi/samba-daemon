@@ -1,8 +1,11 @@
+# confd image
+FROM ghcr.io/illallangi/confd-builder:v0.0.1 AS confd
+
 # main image
 FROM docker.io/library/debian:buster-20220228
 
 # install confd
-COPY --from=ghcr.io/illallangi/confd-builder:v0.0.1 /go/bin/confd /usr/local/bin/confd
+COPY --from=confd /go/bin/confd /usr/local/bin/confd
 
 # install samba and prerequisites
 RUN DEBIAN_FRONTEND=noninteractive \

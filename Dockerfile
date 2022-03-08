@@ -6,7 +6,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
   && \
   apt-get install -y --no-install-recommends \
     samba=2:4.9.5+dfsg-5+deb10u3 \
-    xz-utils \
+    xz-utils=5.2.4-1 \
   && \
   apt-get clean \
   && \

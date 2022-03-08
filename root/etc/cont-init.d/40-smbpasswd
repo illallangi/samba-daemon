@@ -1,0 +1,6 @@
+#!/usr/bin/with-contenv bash
+
+export USERNAME=${USERNAME:-admin}
+export PASSWORD=${PASSWORD:-Letmein123}
+
+echo -e "${PASSWORD}\n${PASSWORD}" | smbpasswd -c /etc/samba/smb.conf -a ${USERNAME} -s

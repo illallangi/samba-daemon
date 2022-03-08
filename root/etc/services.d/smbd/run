@@ -1,0 +1,3 @@
+#!/usr/bin/with-contenv bash
+
+/usr/sbin/smbd --foreground --no-process-group --log-stdout --configfile=/etc/samba/smb.conf

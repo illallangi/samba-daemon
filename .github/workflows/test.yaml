@@ -19,11 +19,11 @@ jobs:
   lint-spelling: # https://github.com/reviewdog/action-misspell
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: reviewdog/action-misspell@v1
-        with:
-          filter_mode: nofilter
-      - uses: reviewdog/action-suggester@v1
+    - uses: actions/checkout@v2
+    - uses: reviewdog/action-misspell@v1
+      with:
+        filter_mode: nofilter
+    - uses: reviewdog/action-suggester@v1
   lint-yaml: # https://github.com/reviewdog/action-yamllint
     runs-on: ubuntu-latest
     steps:

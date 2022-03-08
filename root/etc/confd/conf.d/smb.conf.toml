@@ -1,0 +1,6 @@
+[template]
+src  = "smb.conf.tmpl"
+dest = "/etc/samba/smb.conf"
+keys = [
+    "/samba/share",
+]

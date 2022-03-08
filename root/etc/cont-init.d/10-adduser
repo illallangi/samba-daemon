@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+
+export PUID=${PUID:-1000}
+export PGID=${PGID:-1000}
+export USERNAME=${USERNAME:-admin}
+
+addgroup --gid ${PGID} ${USERNAME} || exit 1
+useradd --gid ${PGID} --uid ${PUID} ${USERNAME} --create-home || exit 1

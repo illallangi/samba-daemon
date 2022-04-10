@@ -1,10 +1,12 @@
 #!/usr/bin/with-contenv bash
+set -e
 
 export SAMBA_SHARE=${SAMBA_SHARE:-data}
 export USERNAME=${USERNAME:-admin}
 export PUID=${PUID:-1000}
 export PGID=${PGID:-1000}
 
+mkdir -p /etc/samba
 confd -onetime -backend env || exit 1
 
 cat /etc/samba/smb.conf

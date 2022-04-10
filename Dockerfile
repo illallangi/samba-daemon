@@ -1,8 +1,8 @@
 # confd image
-FROM ghcr.io/illallangi/confd-builder:v0.0.1 AS confd
+FROM ghcr.io/illallangi/confd-builder:v0.0.2 AS confd
 
 # main image
-FROM docker.io/library/debian:buster-20220228
+FROM docker.io/library/debian:buster-20220328
 
 # install confd
 COPY --from=confd /go/bin/confd /usr/local/bin/confd
@@ -27,6 +27,7 @@ ARG OVERLAY_ARCH="amd64"
 # add s6 overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${OVERLAY_ARCH}-installer /tmp/
 RUN chmod +x /tmp/s6-overlay-${OVERLAY_ARCH}-installer && /tmp/s6-overlay-${OVERLAY_ARCH}-installer / && rm /tmp/s6-overlay-${OVERLAY_ARCH}-installer
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 COPY root /
 

@@ -1,6 +1,6 @@
-# Caddy
+# Samba-daemon
 
-Caddy with some plugins
+Samba daemon
 
 ## Installation
 

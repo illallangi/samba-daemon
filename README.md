@@ -1,6 +1,6 @@
-#  Samba-daemon
+# Samba-daemon
 
- Samba daemon
+Samba daemon
 
 ## Installation
 

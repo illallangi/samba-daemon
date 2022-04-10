@@ -27,6 +27,7 @@ ARG OVERLAY_ARCH="amd64"
 # add s6 overlay
 ADD https://github.com/just-containers/s6-overlay/releases/download/${OVERLAY_VERSION}/s6-overlay-${OVERLAY_ARCH}-installer /tmp/
 RUN chmod +x /tmp/s6-overlay-${OVERLAY_ARCH}-installer && /tmp/s6-overlay-${OVERLAY_ARCH}-installer / && rm /tmp/s6-overlay-${OVERLAY_ARCH}-installer
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 COPY root /
 
